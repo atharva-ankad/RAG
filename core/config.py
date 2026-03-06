@@ -4,7 +4,7 @@ class Settings:
     # --- 1. Database Configuration ---
     # The URL where your MongoDB is running. 
     
-    MONGO_URI = "mongodb+srv://ankad:XevU3FReMPWpCq02@knowledge.ng82gqk.mongodb.net/?appName=Knowledge"
+    MONGO_URI = "PASTE_HERE"
     
     # The name of the database (folder) inside MongoDB
     DB_NAME = "RAG_Project"
