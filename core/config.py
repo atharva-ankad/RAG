@@ -1,10 +1,14 @@
 import os
+from dotenv import load_dotenv
+
+# Load variables from .env
+load_dotenv()
 
 class Settings:
     # --- 1. Database Configuration ---
     # The URL where your MongoDB is running. 
     
-    MONGO_URI = "PASTE_HERE"
+    MONGO_URI = os.getenv("key")
     
     # The name of the database (folder) inside MongoDB
     DB_NAME = "RAG_Project"

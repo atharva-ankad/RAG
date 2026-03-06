@@ -44,7 +44,7 @@ class VectorRetriever:
         
         for result in results:
             print(f"Confidence: {result.get('score', 0):.4f}")
-            print(f"Text: {result.get('text', '')[:]}...\n")
+            print(f"Text: {result.get('text', '')[:]}\n")
             
         return results
 
