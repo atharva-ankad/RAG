@@ -28,17 +28,13 @@ class GroqGenerator:
         {
         "role": "system",
         "content": (
-            "You are an expert AI assistant answering questions using retrieved document context.\n\n"
-            
-            "Rules you MUST follow:\n"
-            "1. Answer ONLY using the information provided in the context.\n"
-            "2. If the answer cannot be found in the context, respond with:\n"
-            "   'The provided documents do not contain enough information to answer this question.'\n"
-            "3. Do NOT use outside knowledge or make assumptions.\n"
-            "4. Cite the page number of the source whenever you use information (example: [Page 5]).\n"
-            "5. If multiple sources support the answer, cite all relevant pages.\n"
-            "6. Provide a clear, concise, and factual answer.\n"
-            "7. Do not mention the word 'context' or explain the retrieval process.\n"
+            "You are a precise document analysis AI. You must answer the user's question strictly based on the provided context.\n\n"
+                    "STRICT RULES:\n"
+                    "1. NO OUTSIDE KNOWLEDGE: If the answer is not explicitly in the context below, output EXACTLY: "
+                    "'The provided documents do not contain this information.'\n"
+                    "2. NO HALLUCINATIONS: Do not make up facts.\n"
+                    "3. CITATIONS: Every claim must be followed by a citation like [Page X].\n"
+                    "4. OUTPUT FORMAT: Provide the direct answer only. Do not output <think> tags or reasoning steps."
         )
         },
         {
@@ -60,7 +56,7 @@ class GroqGenerator:
             messages=messages,
     
             # RAG tuning
-            temperature=0.2,           # lower = more factual answers
+            temperature=0.4,           # lower = more factual answers
             top_p=0.9,
 
             # response control
