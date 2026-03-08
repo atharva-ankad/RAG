@@ -171,21 +171,3 @@ You can tweak the system behavior in `core/config.py`:
 | `EMBEDDING_MODEL` | HuggingFace model name | `all-MiniLM-L6-v2` |
 | `LLM_MODEL` | Model used by Groq | `qwen/qwen3-32b` |
 | `DB_NAME` | MongoDB Database Name | `RAG_Project` |
-
-## Example Workflow
-
-**User Query:** *"What is the composition of the Sun?"*
-
-1. **Retrieve:** The system converts the query into a vector and finds relevant chunks from `sample.pdf`.
-2. **Context:**
-* *Source 1 (Page 6):* "The Sun is... 92.1% hydrogen, 7.8% helium..."
-* *Source 2 (Page 6):* "The Sun has six regions..."
-
-
-3. **Generate:** The LLM receives this context and answers.
-4. **Output:**
-> The Sun is composed primarily of hydrogen (92.1%) and helium (7.8%), with 0.1% consisting of other elements.
-> **📚 References:**
-> * Page 6 (Score: 0.8921)
-> 
-> 
