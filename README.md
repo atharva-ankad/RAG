@@ -29,6 +29,8 @@ The system combines **MongoDB Atlas Vector Search** for retrieval with Groq's fa
 
 ## System Architecture
 
+![](data\RAG_Final.png)
+
 The project operates in two distinct pipelines:
 
 1. **Ingestion Pipeline (Write Path):**
