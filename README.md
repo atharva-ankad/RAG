@@ -2,9 +2,9 @@
 
 ## Overview
 
-This project is a high-performance **Retrieval-Augmented Generation (RAG)** system designed to ingest PDF documents, index them using semantic vectors, and allow users to query the content using natural language.
+This project is a high-performance **Retrieval-Augmented Generation (RAG)** system designed to **ingest PDF documents**, index them using **semantic vectors**, and allow users to **query the content using natural language**.
 
-The system combines **MongoDB Atlas Vector Search** for retrieval with **Groq's fast inference API** (using the Qwen model) to generate accurate, context-aware answers with citations. It features a modular architecture separating data ingestion, vector processing, and retrieval logic.
+The system combines **MongoDB Atlas Vector Search** for retrieval with Groq's fast inference API (using the Qwen model). **Crucially, the system operates on a "Zero Outside Knowledge" principle: it is strictly engineered to answer queries only using the information contained within the ingested documents, ignoring the LLM's pre-trained internal knowledge to ensure factual accuracy and eliminate hallucinations.**
 
 ## Key Features
 
@@ -12,7 +12,7 @@ The system combines **MongoDB Atlas Vector Search** for retrieval with **Groq's 
 * **🧩 Smart Chunking:** Context-aware text splitting using `LangChain`, preserving paragraph structure and semantic meaning.
 * **🧠 Local Embeddings:** Generates embeddings locally using `SentenceTransformers` (`all-MiniLM-L6-v2`) for privacy and efficiency.
 * **⚡ High-Speed Vector Search:** Utilizes MongoDB Atlas Vector Search for scalable similarity retrieval.
-* **🤖 Fast LLM Generation:** Integrates with **Groq API** (running `qwen/qwen3-32b`) for near-instant, factual responses.
+* **🤖 Strict Contextual Generation:** Integrates with Groq API using a system prompt that **enforces strict adherence to the provided context, rejecting any outside information.**
 * **📚 Citation Support:** Every answer includes references to the specific page numbers and relevance scores of the source material.
 
 ## System Architecture
@@ -33,6 +33,14 @@ The project operates in two distinct pipelines:
 * Constructs a prompt with the retrieved context.
 * Streams the response from the Groq LLM.
 
+## Technologies Used
+
+* **Language:** Python
+* **Database:** MongoDB Atlas (Vector Search)
+* **LLM:** Groq API (Qwen 3 32B)
+* **Embeddings:** Sentence Transformers (Hugging Face)
+* **PDF Parsing:** PyMuPDF (Fitz)
+* **Orchestration:** LangChain (Text Splitters)
 
 
 ## Project Structure
@@ -63,6 +71,7 @@ rag-project/
 └── README.md              # Project documentation
 
 ```
+
 
 ## Prerequisites
 
@@ -168,14 +177,3 @@ You can tweak the system behavior in `core/config.py`:
 > * Page 6 (Score: 0.8921)
 > 
 > 
-
-
-
-## Technologies Used
-
-* **Language:** Python
-* **Database:** MongoDB Atlas (Vector Search)
-* **LLM:** Groq API (Qwen 3 32B)
-* **Embeddings:** Sentence Transformers (Hugging Face)
-* **PDF Parsing:** PyMuPDF (Fitz)
-* **Orchestration:** LangChain (Text Splitters)
